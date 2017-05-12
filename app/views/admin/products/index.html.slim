@@ -3,6 +3,7 @@
   table.ui.celled.striped.table
     thead
       tr
+        th #
         th Title
         th Description
         th Price
@@ -10,19 +11,21 @@
         th Action
         th Created at
     tbody
-      - @products.each do |product|
+      - @products.each_with_index do |product, index|
         tr
-          th
+          td
+            = index
+          td
             = link_to product.title, admin_product_path(product)
-          th
+          td
             = simple_format truncate product.description, length: 30
-          th
+          td
             = product.price
-          th
+          td
             = product.quantity
-          th
+          td
             => link_to 'Edit', edit_admin_product_path(product)
             | |
             =< link_to 'Destroy', admin_product_path(product), method: :delete
-          th
+          td
             = product.created_at
