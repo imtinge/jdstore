@@ -6,7 +6,7 @@
   table.ui.celled.striped.table
     thead
       tr
-        th[colspan='2'] 商品资讯
+        th[colspan='2'] 商品
         th 单价
         th 数量
         th 操作
@@ -16,7 +16,7 @@
           td
             = link_to product_path(cart_item.product) do
               - if cart_item.product.image.present?
-                = image_tag cart_item.product.image.thumb.url, class: 'ui small image'
+                = image_tag cart_item.product.image.thumb.url, class: 'ui small rounded image'
               - else
                 = image_tag 'https://semantic-ui.com/images/wireframe/image.png', class: 'ui tiny image'
           td
@@ -29,15 +29,13 @@
             =< link_to semantic_icon('minus'), decrease_cart_item_path(cart_item), method: :post, class: 'ui mini red icon button'
           td
             = link_to semantic_icon('trash'), cart_item_path(cart_item), method: :delete, class: 'ui mini red basic icon button'
-  
-  br
 
-  .ui.right.floated.segment
+
+
+  .ui.divider
+  .ui.segment
     span
       | 总计
       =<> render_cart_total_price(current_cart)
       | 元
-
-  hr
-
-  = link_to "确认结账", "#", method: :post, class: 'ui large red right floated button'
+    = link_to "确认结账", "#", method: :post, class: 'ui large red right floated button'

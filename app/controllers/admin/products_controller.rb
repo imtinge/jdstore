@@ -26,13 +26,15 @@ class Admin::ProductsController < ApplicationController
 
   def new
     @product = Product.new
+ 
+    render formats: :js
   end
 
   def create
     @product = Product.new(product_params)
-
-    if @product.save
-      redirect_to admin_products_path
+    
+    if @product.save!
+      render formats: :js
     else
       render :new
     end

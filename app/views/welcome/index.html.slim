@@ -1,7 +1,7 @@
 .ui.inverted.vertical.masthead.center.aligned.segment
   .ui.container
     .ui.large.secondary.inverted.pointing.menu
-      = link_to 'JDStore', '/', class: 'header item'
+      = link_to 'JDStore', products_path, class: 'header item'
       .right.menu
         - unless user_signed_in?
           .item
@@ -17,10 +17,8 @@
                 = link_to 'Admin panel', admin_products_path, class: 'item'
                 .ui.divider
               = link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'item'
-  .ui.text.container
-    h1.inverted.header
-      |JD Store
-.ui.hidden.divider
+.container
+  = semantic_flash
 .ui.text.container
   .ui.raised.segment
     .ui.divider

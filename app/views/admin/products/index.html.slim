@@ -1,5 +1,6 @@
 .ui.container[style='margin-top: 80px;']
-  = link_to 'New Product', new_admin_product_path, class: 'ui large teal right floated button'
+  #product-form style='display:none;'
+  = link_to 'New Product', new_admin_product_path, id: 'new-product-button', class: 'ui large teal right floated button', remote: true
   table.ui.celled.striped.table
     thead
       tr
@@ -9,20 +10,5 @@
         th Quantity
         th Action
         th Created at
-    tbody
-      - @products.each do |product|
-        tr
-          th
-            = link_to product.title, admin_product_path(product)
-          th
-            = simple_format truncate product.description, length: 30
-          th
-            = product.price
-          th
-            = product.quantity
-          th
-            => link_to 'Edit', edit_admin_product_path(product)
-            | |
-            =< link_to 'Destroy', admin_product_path(product), method: :delete
-          th
-            = product.created_at
+    tbody#products-tbody
+      = render @products
