@@ -8,6 +8,7 @@ class Admin::ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+    render formats: :js
   end
 
   def show
@@ -18,7 +19,10 @@ class Admin::ProductsController < ApplicationController
     @product = Product.find(params[:id])
     
     if @product.update(product_params)
-      redirect_to admin_products_path
+      respond_to do |format|
+        format.js
+        format.any { render text: 'WTF' }
+      end
     else
       render :edit
     end
@@ -32,9 +36,11 @@ class Admin::ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    
-    if @product.save!
-      render formats: :js
+    if @product.save
+      respond_to do |format|
+        format.js
+        format.any { render text: 'WTF' }
+      end
     else
       render :new
     end
@@ -44,7 +50,8 @@ class Admin::ProductsController < ApplicationController
     @product = Product.find(params[:id])
     
     @product.destroy
-    redirect_to admin_products_path, alert: 'Product deleted'
+    render formats: :js
+    # redirect_to admin_products_path, alert: 'Product deleted'
   end
 
   private
