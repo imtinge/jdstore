@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :orders
   resources :cart_items do
     member do
       delete :destroy
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
   resources :carts do
     collection do
       get :clear
+      post :checkout
     end
   end
   resources :products do

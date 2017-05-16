@@ -1,6 +1,6 @@
 #header-menu.ui.inverted.large.top.fixed.menu
   .ui.container
-    = link_to '卢阳私房菜', products_path, class: 'ui large header item'
+    = link_to '私房菜', products_path, class: 'ui large header item'
     .right.menu
       - unless user_signed_in?
         .item
@@ -12,7 +12,7 @@
           = link_to carts_path do
             | 购物车
             = semantic_icon 'in cart'
-            .ui.circular.label
+            #cart_size.ui.circular.label
               = current_cart.products.count
         .ui.simple.dropdown.item
           = current_user.email

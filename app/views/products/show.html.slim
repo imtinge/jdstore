@@ -1,9 +1,7 @@
-/ TODO admin/products/show 优化
 .ui.middle.aligned.stackable.grid.container[style='margin-top: 80px;']
   .row
     .eight.wide.column
-      -if @product.image.present?
-        = image_tag @product.image.url(:medium), class: 'ui large brodered rounded image'
+      = render_image @product.image, :medium, 'ui large brodered rounded image'
     .eight.wide.column
       .ui.container
         h1.heading 
@@ -19,6 +17,6 @@
           = @product.quantity
         .right.aligned
         - unless @product.quantity < 1
-          = link_to '加入购物车', add_to_cart_product_path(@product), method: :post, class: 'ui large red button'
+          = link_to '加入购物车', add_to_cart_product_path(@product), method: :post, class: 'ui large red button', remote: true
         - else
           | 已销售一空，无法购买

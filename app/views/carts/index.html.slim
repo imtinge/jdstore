@@ -15,10 +15,8 @@
         tr
           td
             = link_to product_path(cart_item.product) do
-              - if cart_item.product.image.present?
-                = image_tag cart_item.product.image.thumb.url, class: 'ui small rounded image'
-              - else
-                = image_tag 'https://semantic-ui.com/images/wireframe/image.png', class: 'ui tiny image'
+              = render_image cart_item.product.image, :thumb, 'ui small rounded image'
+            end
           td
             = link_to(cart_item.product.title, product_path(cart_item.product))
           td
@@ -38,4 +36,4 @@
       | 总计
       =<> render_cart_total_price(current_cart)
       | 元
-    = link_to "确认结账", "#", method: :post, class: 'ui large red right floated button'
+    = link_to "确认结账", checkout_carts_path, method: :post, class: 'ui large red right floated button'

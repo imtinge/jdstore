@@ -2,14 +2,15 @@ doctype html
 html
   head
     title
-      | 丁氏私房菜
+      | 私房菜
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body.pusher
     = render 'common/menu'
     #main[style='margin-top: 74px;']
-      = semantic_flashes
+      #flash_message
+        = semantic_flash
       = yield
     = render 'common/footer'
     = debug params if Rails.env.development?

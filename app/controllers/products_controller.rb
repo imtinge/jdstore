@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
     else
       flash[:warning] = '购物车中已有此物品'
     end
-    redirect_to :back
+    render formats: :js
   end
 
   private
