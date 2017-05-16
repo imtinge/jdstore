@@ -1,4 +1,3 @@
-ruby '2.4.1'
 source 'https://rubygems.org'
 
 
@@ -34,10 +33,13 @@ gem 'simple_form'
 gem 'slim-rails'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'remotipart'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
+  # gem 'byebug', platform: :mri
+  gem 'pry'
+  gem 'awesome_rails_console'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 end
@@ -56,4 +58,4 @@ group :production do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

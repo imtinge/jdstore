@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
-  get 'welcome/index'
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :orders
   resources :cart_items do
     member do
       delete :destroy
@@ -12,6 +15,7 @@ Rails.application.routes.draw do
   resources :carts do
     collection do
       get :clear
+      post :checkout
     end
   end
   resources :products do
@@ -22,5 +26,5 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :products
   end
-  root 'products#index'
+  root 'welcome#index'
 end

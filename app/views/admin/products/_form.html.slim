@@ -1,5 +1,6 @@
-= simple_form_for [:admin, @product] do |f|
-  .ui.raised.segment
+.ui.raised.segment
+  = render 'common/error_messages', object: @product
+  = simple_form_for [:admin, @product], remote: true, authenticity_token: true, html: {multipart: true} do |f|
     = f.input :title, wrapper: :ui_label_input, ui_label: 'Title'
     = f.input :description, wrapper: :ui_label_input, ui_label: 'Description'
     = f.input :image, as: :file, html5: true, wrapper: :ui_label_input, ui_label: 'image'

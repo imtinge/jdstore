@@ -1,0 +1,36 @@
+.ui.container[style='marting-top: 80px;']
+  h2.header 购物明细
+
+  table.ui.celled.striped.table
+    thead
+      tr
+        th[colspan='2'] 商品
+        th 单价
+        th 数量
+    tbody
+      - current_cart.cart_items.each do |cart_item|
+        tr
+          td
+            = link_to product_path(cart_item.product) do
+          td
+            = link_to(cart_item.product.title, product_path(cart_item.product))
+          td
+            = cart_item.product.price
+
+.ui.segment
+  span
+    | 总计
+    =<> render_cart_total_price(current_cart)
+    | 元
+
+.ui.divider
+= simple_form_for @order do |f|
+  h3.header 订购人
+  = f.input :billing_name
+  = f.input :billing_address
+  h3.header 收货人
+  = f.input :shipping_name
+  = f.input :shipping_address
+  
+  = f.submit '生成订单', class: 'ui button'
+  

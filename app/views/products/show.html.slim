@@ -1,8 +1,7 @@
 .ui.middle.aligned.stackable.grid.container[style='margin-top: 80px;']
   .row
     .eight.wide.column
-      -if @product.image.present?
-        = image_tag @product.image.url(:medium), class: 'ui large brodered rounded image'
+      = render_image @product.image, :medium, 'ui large brodered rounded image'
     .eight.wide.column
       .ui.container
         h1.heading 
