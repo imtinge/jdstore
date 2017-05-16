@@ -17,6 +17,6 @@
           = @product.quantity
         .right.aligned
         - unless @product.quantity < 1
-          = link_to '加入购物车', add_to_cart_product_path(@product), method: :post, class: 'ui large red button', remote: true
+          = link_to '加入购物车', add_to_cart_product_path(@product), method: :post, class: 'ui large red button'
         - else
           | 已销售一空，无法购买
