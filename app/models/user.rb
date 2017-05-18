@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_one :cart
   has_many :orders
   
-  after_validation on: :create  do
+  before_create  do
     self.cart = self.build_cart
   end
 
