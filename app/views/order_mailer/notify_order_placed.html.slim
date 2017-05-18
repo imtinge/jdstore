@@ -1,21 +1,27 @@
-.ui.container style='margin-top:80;'
+.ui.container
   h3.header 订单明细
+  small
+    = link_to '订单连接', order_url(@order.token)
 
   table.ui.celled.striped.table
     thead
       tr
-        th 商品
-        th 价格
+        th width="70%" 商品明细
+        th 单价
+        th 数量
+        th 小记
     tbody
       - @product_lists.each do |product_list|
         tr
           td
             = product_list.product_name
           td
-            = semantic_icon 'yen'
-            => product_list.product_price
-            | x
-            =< product_list.quantity
+            = product_list.product_price
+          td
+            = product_list.quantity
+          td
+            = product_list.quantity * product_list.product_price
+
   .ui.right.aligned.container
     .ui.large.label
       | 合计:
@@ -35,11 +41,3 @@
       | -
       = @order.shipping_address
 
-  - unless @order.is_paid?
-    .ui.right.floated.large.red.buttons
-      = link_to '支付宝付款', pay_with_alipay_order_path(@order.token), method: :post, class: 'ui button'
-      .or
-      = link_to '微信付款', pay_with_wechat_order_path(@order.token), method: :post, class: 'ui button'
-  - else
-    .ui.right.aligned.container
-      .ui.large.label 已付款

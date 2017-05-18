@@ -1,0 +1,14 @@
+.ui.container style='margin-top=80;'
+  h2.header 订单列表
+  table.ui.celled.striped.table
+    thead
+      tr
+        th #
+        th 时间
+    tbody
+      - @orders.each do |order|
+        tr
+          td
+            = link_to order.id, order_path(order.token)
+          td 
+            = order.created_at.to_s(:long)
