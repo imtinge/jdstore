@@ -1,21 +1,3 @@
 .ui.container[style='margin-top: 80px;']
   .ui.four.stackable.cards
-    - @products.each do |product|
-      .card
-        = link_to product_path(product) do
-          = render_image product.image, :thumb
-        end
-        .content
-          = link_to product.title, product_path(product), class: 'header'
-          .meta
-            = semantic_icon 'yen'
-            = product.price
-          .description
-            = truncate product.description, length: 18
-        .extra.content
-          .ui.heart.rating[data-rating='3']
-
-javascript:
-  $(document).ready(function() {
-    $('.rating').rating();
-  });
+    = render @products

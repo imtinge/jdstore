@@ -1,0 +1,15 @@
+.card
+  .image
+    = link_to product_path(product) do
+      = render_image product.image, :thumb, 'ui medium image'
+    end
+  .content
+    .header
+      = semantic_icon 'yen'
+      = product.price
+    .meta
+      = link_to product.title, product_path(product), class: 'header'
+    .description
+      = truncate product.description, length: 18
+  .extra.content
+    .ui.heart.rating data-rating='3'

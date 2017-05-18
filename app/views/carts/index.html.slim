@@ -1,8 +1,6 @@
-.ui.container[style='marting-top: 80px;']
+.ui.container[style='margin-top: 60px;']
+  = link_to '清空购物车', clear_carts_path, class: 'ui right floated red basic button', data: { confirm: '你确定清空整个购物车吗？' }, 'data-turbolinks': "false"
   h2.header 购物车
-
-  = link_to '清空购物车', clear_carts_path, class: 'ui right floated red basic button', data: { confirm: '你确定清空整个购物车吗？' }
-
   table.ui.celled.striped.table
     thead
       tr
@@ -15,25 +13,21 @@
         tr
           td
             = link_to product_path(cart_item.product) do
-              = render_image cart_item.product.image, :thumb, 'ui small rounded image'
+              = render_image cart_item.product.image, :thumb, 'ui tiny rounded image'
             end
           td
             = link_to(cart_item.product.title, product_path(cart_item.product))
           td
             = cart_item.product.price
           td 
-            => link_to semantic_icon('plus'), increase_cart_item_path(cart_item), method: :post, class: 'ui mini red icon button'
+            => link_to semantic_icon('plus'), increase_cart_item_path(cart_item), method: :post, class: 'ui mini red basic icon button'
             = cart_item.quantity
-            =< link_to semantic_icon('minus'), decrease_cart_item_path(cart_item), method: :post, class: 'ui mini red icon button'
+            =< link_to semantic_icon('minus'), decrease_cart_item_path(cart_item), method: :post, class: 'ui mini red basic icon button'
           td
-            = link_to semantic_icon('trash'), cart_item_path(cart_item), method: :delete, class: 'ui mini red basic icon button'
-
-
-
-  .ui.divider
-  .ui.segment
+            = link_to semantic_icon('trash'), cart_item_path(cart_item), method: :delete, class: 'ui mini red icon button'
+  .ui.right.aligned.segment
     span
       | 总计
       =<> render_cart_total_price(current_cart)
       | 元
-    = link_to "确认结账", checkout_carts_path, method: :post, class: 'ui large red right floated button'
+  = link_to "确认结账", checkout_carts_path, class: 'ui large red right floated button'
