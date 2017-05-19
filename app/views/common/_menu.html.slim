@@ -20,6 +20,7 @@
           .menu
             - if current_user.admin?
               = link_to 'Admin panel', admin_products_path, class: 'item'
+              = link_to 'Order panel', admin_orders_path, class: 'item'
               .ui.divider
-            = link_to 'Order panel', account_orders_path, class: 'item'
+            = link_to 'Order list', account_orders_path, class: 'item'
             = link_to semantic_icon('sign out') + 'Sign out', destroy_user_session_path, method: :delete, class: 'item'
