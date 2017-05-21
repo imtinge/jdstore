@@ -1,7 +1,12 @@
 .ui.container style='margin-top: 3em;'
-  .ui.four.top.attached.steps
-  .ui.attached.segment
-    h3.header 寄送信息
+  = render 'common/order_steps', order: @order
+  .ui.right.aligned.container
+    - if @order.could_cancle?
+      = button_to '取消订单', cancel_account_order_path(@order.token), class: 'ui red basic button'
+    - if @order.could_return_good?
+      = button_to '退货', return_account_order_path(@order.token), class: 'ui red basic button'
+  h3.header 寄送信息
+  .ui.secodary.segment
     .ui.segments
       .ui.secondary.segment 订购人
       .ui.segment
@@ -14,34 +19,31 @@
         | -
         = @order.shipping_address
 
-  table.ui.celled.striped.table
-    thead
-      tr
-        th width='80%' 商品
-        th 单价
-        th 数量
-    tbody
-      - @product_lists.each do |product_list|
+    table.ui.celled.striped.table
+      thead
         tr
-          td
-            = product_list.product_name
-          td
-            = semantic_icon 'yen'
-            = product_list.product_price
-          td
-            = product_list.quantity
-  .ui.right.aligned.container
-    .ui.large.label
-      | 合计:
-      = @order.total
-      | 元
-      
-  - unless @order.is_paid?
-    .ui.right.floated.large.red.buttons
-      = link_to '支付宝付款', pay_with_alipay_order_path(@order.token), method: :post, class: 'ui button'
-      .or
-      = link_to '微信付款', pay_with_wechat_order_path(@order.token), method: :post, class: 'ui button'
-  - else
+          th width='80%' 商品
+          th 单价
+          th 数量
+      tbody
+        - @product_lists.each do |product_list|
+          tr
+            td
+              = product_list.product_name
+            td
+              = semantic_icon 'yen'
+              = product_list.product_price
+            td
+              = product_list.quantity
     .ui.right.aligned.container
-      .ui.large.label 已付款
-      button.ui.red.button 取消订单
+      .ui.large.label
+        | 合计:
+        = @order.total
+        | 元
+  .ui.right.aligned.container
+    .ui.large.red.buttons
+      - if @order.could_pay?
+        = button_to '支付宝付款', pay_with_alipay_account_order_path(@order.token), method: :post, class: 'ui button'
+        .or
+        = button_to '微信付款', pay_with_wechat_account_order_path(@order.token), method: :post, class: 'ui button'
+

@@ -19,15 +19,14 @@
             = link_to(cart_item.product.title, product_path(cart_item.product))
           td
             = cart_item.product.price
-          td 
+          td
             => link_to semantic_icon('plus'), increase_cart_item_path(cart_item), method: :post, class: 'ui mini red basic icon button'
             = cart_item.quantity
             =< link_to semantic_icon('minus'), decrease_cart_item_path(cart_item), method: :post, class: 'ui mini red basic icon button'
           td
             = link_to semantic_icon('trash'), cart_item_path(cart_item), method: :delete, class: 'ui mini red icon button'
-  .ui.right.aligned.segment
-    span
-      | 总计
-      =<> render_cart_total_price(current_cart)
-      | 元
-  = link_to "确认结账", checkout_carts_path, class: 'ui large red right floated button'
+  h3.header
+    | 总计：
+    =<> render_cart_total_price(current_cart)
+    | 元
+    = link_to "确认结账", checkout_carts_path, class: 'ui right floated large red button'

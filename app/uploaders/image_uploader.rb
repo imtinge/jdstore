@@ -5,7 +5,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  if Rails.env.production?
+    storage :qiniu
+  else
+    storage :file
+  end
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
@@ -42,9 +46,6 @@ class ImageUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [400, 400]
   end
 
-  version :banner do
-    process resize_to_fill: [1000, 400]
-  end
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist

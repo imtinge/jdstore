@@ -1,8 +1,8 @@
 .ui.stackable.grid.container[style='margin-top: 20px;']
-  .ten.wide.column
+  .seven.wide.column
     .ui.piled.segment
-      = render_image @product.image, :banner, 'ui centered image'
-  .six.wide.column
+      = render_image @product.image, :medium, 'ui centered image'
+  .nine.wide.column
     h2.header = @product.title
     span
       = social_share_button_tag @product.title

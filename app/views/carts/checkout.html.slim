@@ -1,4 +1,4 @@
-.ui.container style='margin-top: 80px;'
+.ui.container style='margin-top: 50px;'
   h2.header 购物明细
   table.ui.celled.striped.table
     thead
@@ -16,15 +16,15 @@
           td
             = cart_item.product.quantity
 
-  .ui.right.aligned.segment
-    span
+  .ui.right.aligned.container
+    .ui.label
       | 总计：
       =<> render_cart_total_price(current_cart)
       | 元
 
   h2.header 订单信息
   .ui.form
-    = simple_form_for @order do |f|
+    = simple_form_for [:account, @order] do |f|
       h3.ui.dividing.header 订购人
       .two.fields
         = f.input :billing_name

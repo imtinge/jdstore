@@ -40,6 +40,8 @@ class Order < ApplicationRecord
       transitions from: [:order_placed, :paid], to: :order_cancelled
     end
   end
+  
+  STATE_ORDER = {order_placed:1, paid:2, shipping:3, shipped:4}
 
   def generate_token
     self.token = SecureRandom.uuid
@@ -51,5 +53,40 @@ class Order < ApplicationRecord
 
   def pay!
     self.update_columns(is_paid: true)
+  end
+  
+  def could_pay?
+    'order_placed' == aasm_state
+  end
+  
+  def could_cancle?
+    %w[order_placed paid].include?(aasm_state)
+  end
+  
+  def could_return_good?
+    'shipped' == aasm_state
+  end
+  
+  def compare_with_state(state)
+    if step = state_order(state) and current_step = state_order
+      if current_step > step
+        'completed'
+      elsif current_step == step
+        if state == 'shipped'
+          'completed'
+        else
+          'active'
+        end
+      else
+        'disabled'
+      end
+    else
+      'disabled'
+    end
+  end
+  
+  
+  def state_order(state=self.aasm_state)
+    STATE_ORDER[state.to_sym]
   end
 end

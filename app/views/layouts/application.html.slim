@@ -8,9 +8,10 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     = render 'common/menu'
-    .ui.container style='margin-top: 80px;'
+    main style='margin-top: 74px;'
       #flash_message
         = semantic_flash
-      = yield
+      .ui.container style='margin-top: 20px;'
+        = yield
     = render 'common/footer'
     = debug params if Rails.env.development?

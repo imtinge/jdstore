@@ -1,6 +1,5 @@
 .ui.container
   h2.header 订单明细
-  = render 'state_option', order: @order
 
   table.ui.celled.striped.table
     thead
@@ -36,3 +35,4 @@
       = @order.shipping_name
       | -
       = @order.shipping_address
+  = render 'state_option', order: @order

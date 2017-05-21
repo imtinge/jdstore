@@ -1,7 +1,7 @@
 .ui.container
   h3.header 订单明细
   small
-    = link_to '订单连接', order_url(@order.token)
+    = link_to '订单连接', account_order_url(@order.token)
 
   table.ui.celled.striped.table
     thead
