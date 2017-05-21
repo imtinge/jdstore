@@ -4,6 +4,6 @@ class OrderMailer < ApplicationMailer
     @user = order.user
     @product_lists = @order.product_lists
 
-    mail to: @user.email, subject: '[私房菜]感谢你完成本次的下单，以下是您这次的购物明细 #{order.token}'
+    mail to: @user.email, subject: "[私房菜]感谢你完成本次的下单，以下是您这次的购物明细 #{@order.token}"
   end
 end
