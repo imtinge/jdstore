@@ -1,6 +1,6 @@
 .ui.container
-  .item
-    h3.header = render_order_paid_state(@order)
+  h2.header 订单明细
+  = render 'state_option', order: @order
 
   table.ui.celled.striped.table
     thead

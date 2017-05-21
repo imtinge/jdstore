@@ -6,9 +6,9 @@ html
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  body.pusher
+  body
     = render 'common/menu'
-    #main[style='margin-top: 74px;']
+    .ui.container style='margin-top: 80px;'
       #flash_message
         = semantic_flash
       = yield

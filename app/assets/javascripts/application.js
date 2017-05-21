@@ -15,4 +15,6 @@
 //= require jquery.remotipart
 //= require turbolinks
 //= require semantic-ui
+//= require social-share-button
+//= require social-share-button/wechat
 //= require_tree .

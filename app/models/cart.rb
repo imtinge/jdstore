@@ -6,7 +6,7 @@ class Cart < ApplicationRecord
     if product.quantity >= 1
       ci = cart_items.build
       ci.product = product
-      ci.quantity = 1
+      ci.quantity = product.buy_num
       ci.save
     end
   end

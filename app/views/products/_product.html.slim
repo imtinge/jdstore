@@ -5,10 +5,10 @@
     end
   .content
     .header
-      = semantic_icon 'yen'
-      = product.price
-    .meta
       = link_to product.title, product_path(product), class: 'header'
+      span.right.floated
+        = semantic_icon 'yen'
+        = product.price
     .description
       = truncate product.description, length: 18
   .extra.content

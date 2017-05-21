@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, only: :add_to_cart
 
   def index
     @products = Product.all
@@ -10,6 +11,7 @@ class ProductsController < ApplicationController
 
   def add_to_cart
     @product = Product.find(params[:id])
+    @product.buy_num = params[:buy_num].to_i
     unless current_cart.products.include?(@product)
       if @product.quantity == 0
         flash[:alert] = '已售罄，无法购买'

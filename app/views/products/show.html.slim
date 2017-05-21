@@ -1,22 +1,29 @@
-.ui.stackable.grid.container[style='margin-top: 80px;']
-  .row
-    .seven.wide.column
-      = render_image @product.image, :medium, 'ui large brodered rounded image'
-    .nine.wide.column
-      .ui.segments
-        .ui.large.blue.left.ribbon.label = @product.title
-        .ui.secondary.segment
-          = @product.description
-        .ui.segment
-          .ui.large.orange.tag.label
-            = semantic_icon 'yen'
-            = @product.price
-        .ui.segment
-          .ui.teal.statistic
-            .value = @product.quantity
-            .label 尚余
-        .right.aligned
-      - unless @product.quantity < 1
-        = link_to '加入购物车', add_to_cart_product_path(@product), method: :post, class: 'ui right floated large red button'
+.ui.stackable.grid.container[style='margin-top: 20px;']
+  .ten.wide.column
+    .ui.piled.segment
+      = render_image @product.image, :banner, 'ui centered image'
+  .six.wide.column
+    h2.header = @product.title
+    span
+      = social_share_button_tag @product.title
+    .ui.divider
+    = @product.description
+    .ui.divider
+    .ui.container
+      - if @product.quantity > 0
+        .ui.tiny.statistic
+          .value = @product.quantity
+          .label 今日尚余
+        .ui.tiny.right.floated.grey.statistic
+          .value = @product.proceeds
+          .label 已售
+        = form_tag add_to_cart_product_path(@product), method: :post, class: 'ui form' do
+          .field
+            .ui.action.input
+              = number_field nil, :buy_num, value: 1, in: 1..@product.quantity
+              = submit_tag '加入购物车', class: 'ui right floated red large button'
       - else
-        | 已销售一空，无法购买
+        .ui.large.right.floated.grey.statistic
+          .value = @product.proceeds
+          .label 已售罄
+
