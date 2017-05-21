@@ -5,7 +5,7 @@
   .nine.wide.column
     h2.header = @product.title
     span
-      = social_share_button_tag @product.title
+      = social_share_button_tag @product.title, 'data-title': @product.title, image: render_image(@product.image, :thumb), 'data-type': 'photo'
     .ui.divider
     = @product.description
     .ui.divider
